@@ -1,0 +1,194 @@
+CITY MANAGEMENT SYSTEM — ALGORITHM
+====================================
+
+==================================================
+  PROGRAM MODULE
+==================================================
+
+Program Overview
+----------------
+City Management System using linked lists to manage citizens, complaints, utility records, and waste.
+
+1. Define node structures: Citizen (singly linked), Complaint (doubly linked), WaterRecord, ElectricityRecord, WasteRecord (all singly linked).
+2. Declare global head pointers for each list, initialized to NULL.
+3. Enter main loop: display menu → read choice → dispatch to module → repeat until choice == 6.
+
+Main Program Loop
+-----------------
+1. START
+2. Declare integer variables: choice, op.
+3. DO:
+   3.1  Display Main Menu options (1–6).
+   3.2  Read choice from user.
+   3.3  SWITCH choice:
+         Case 1 → go to Citizen Sub-Menu.
+         Case 2 → go to Complaint Sub-Menu.
+         Case 3 → go to Water Sub-Menu.
+         Case 4 → go to Electricity Sub-Menu.
+         Case 5 → go to Waste Sub-Menu.
+         Case 6 → print 'Exiting'.
+         Default → print 'Invalid choice'.
+14. WHILE choice ≠ 6.
+15. STOP
+
+
+==================================================
+  CITIZEN MODULE
+==================================================
+
+addCitizen()
+------------
+1. START
+2. Allocate a new Citizen node.
+3. Read id from user → store in node→id.
+4. Read name from user → store in node→name.
+5. Read age from user → store in node→age.
+6. Set node→next = citizenHead  (point new node to current head).
+7. Set citizenHead = node  (new node becomes the head).
+8. Print 'Citizen added'.
+9. STOP
+
+displayCitizens()
+-----------------
+1. START
+2. IF citizenHead == NULL → print 'No citizens found' → STOP.
+3. Print header 'Citizen List'.
+4. Set temp = citizenHead.
+5. WHILE temp ≠ NULL:
+   5.1  Print temp→id, temp→name, temp→age.
+   5.2  Set temp = temp→next.
+8. STOP
+
+
+==================================================
+  COMPLAINT MODULE
+==================================================
+
+addComplaint()
+--------------
+1. START
+2. Allocate a new Complaint node.
+3. Read id → store in node→id.
+4. Read text (full line) → store in node→text.
+5. Set node→status = 'Pending'.
+6. Set node→prev = NULL.
+7. Set node→next = complaintHead  (link to current head).
+8. IF complaintHead ≠ NULL → set complaintHead→prev = node.
+9. Set complaintHead = node  (new node becomes the head).
+10. Print 'Complaint added'.
+11. STOP
+
+displayComplaints()
+-------------------
+1. START
+2. IF complaintHead == NULL → print 'No complaints' → STOP.
+3. Print header 'Complaint List'.
+4. Set temp = complaintHead.
+5. WHILE temp ≠ NULL:
+   5.1  Print temp→id, temp→text, temp→status.
+   5.2  Set temp = temp→next.
+8. STOP
+
+updateComplaintStatus()
+-----------------------
+1. START
+2. Read target id from user.
+3. Set temp = complaintHead.
+4. WHILE temp ≠ NULL:
+   4.1  IF temp→id == id:
+         a. Read new status from user.
+         b. Store in temp→status.
+         c. Print 'Updated'.
+         d. RETURN.
+   4.2  Set temp = temp→next.
+11. IF loop ends without match → print 'Not found'.
+12. STOP
+
+
+==================================================
+  WATER MODULE
+==================================================
+
+addWaterRecord()
+----------------
+1. START
+2. Allocate a new WaterRecord node.
+3. Read consumerId → store in node→consumerId.
+4. Read units → store in node→units.
+5. Calculate bill = units × 2.5 → store in node→bill.
+6. Set node→next = waterHead.
+7. Set waterHead = node.
+8. Print 'Water record added'.
+9. STOP
+
+displayWaterRecords()
+---------------------
+1. START
+2. IF waterHead == NULL → print 'No water records' → STOP.
+3. Print header 'Water Records'.
+4. Set temp = waterHead.
+5. WHILE temp ≠ NULL:
+   5.1  Print temp→consumerId, temp→units, temp→bill.
+   5.2  Set temp = temp→next.
+8. STOP
+
+
+==================================================
+  ELECTRICITY MODULE
+==================================================
+
+addElectricityRecord()
+----------------------
+1. START
+2. Allocate a new ElectricityRecord node.
+3. Read consumerId → store in node→consumerId.
+4. Read units → store in node→units.
+5. Calculate bill using tiered rate:
+   IF units ≤ 100:   bill = units × 3
+   ELSE IF units ≤ 300:   bill = (100 × 3) + (units − 100) × 5
+   ELSE:   bill = (100 × 3) + (200 × 5) + (units − 300) × 7
+9. Store result in node→bill.
+10. Set node→next = electricityHead.
+11. Set electricityHead = node.
+12. Print 'Electricity record added'.
+13. STOP
+
+displayElectricityRecords()
+---------------------------
+1. START
+2. IF electricityHead == NULL → print 'No electricity records' → STOP.
+3. Print header 'Electricity Records'.
+4. Set temp = electricityHead.
+5. WHILE temp ≠ NULL:
+   5.1  Print temp→consumerId, temp→units, temp→bill.
+   5.2  Set temp = temp→next.
+8. STOP
+
+
+==================================================
+  WASTE MODULE
+==================================================
+
+addWasteRecord()
+----------------
+1. START
+2. Allocate a new WasteRecord node.
+3. Read id → store in node→id.
+4. Read type → store in node→type.
+5. Read quantity → store in node→quantity.
+6. Set node→next = wasteHead.
+7. Set wasteHead = node.
+8. Print 'Waste added'.
+9. STOP
+
+displayWasteRecords()
+---------------------
+1. START
+2. IF wasteHead == NULL → print 'No waste records' → STOP.
+3. Print header 'Waste Records'.
+4. Set temp = wasteHead.
+5. WHILE temp ≠ NULL:
+   5.1  Print temp→id, temp→type, temp→quantity.
+   5.2  Set temp = temp→next.
+8. STOP
+
